@@ -1,0 +1,127 @@
+apply plugin: 'com.android.library'
+//配置插件
+/*apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'*/
+
+android {
+    compileSdkVersion 28
+
+
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0-alpha3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.squareup.okio:okio:1.14.0'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+}
+
+
+/*
+version = "0.1"       //这个是版本号，必须填写
+//def siteUrl = 'https://github.com/xanthuim'      // 项目的主页   这个是说明，可随便填
+//def gitUrl = 'https://github.com/xanthuim'      // Git仓库的url  这个是说明，可随便填
+//compile 'com.arshowbaby:mylibrary:1.0.0'中的com.arshowbaby
+group = "com.weicongli.utils"    // 这里是groupId ,必须填写  一般填你唯一的包名
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                // 项目描述，复制我的话，这里需要修改。
+                name 'Android Commom Utils From WeicongLi'     //项目描述
+                url siteUrl
+                // 软件开源协议，现在一般都是Apache License2.0吧，复制我的，这里不需要修改。
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                //填写开发者基本信息，复制我的，这里需要修改。
+                developers {
+                    developer {
+                        id 'WeicongLi'        //填写开发者的一些基本信息
+                        name 'WeicongLi'    //填写开发者的一些基本信息
+                        email 'li912220261@gmail.com'   //填写开发者的一些基本信息
+                    }
+                }
+                // SCM，复制我的，这里不需要修改。
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+// 生成jar包的task，不需要修改。
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+    options.addStringOption('charSet', 'UTF-8')
+}
+// 生成jarDoc的task，不需要修改。
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+// 生成javaDoc的jar，不需要修改
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+// 这里是读取Bintray相关的信息，我们上传项目到github上的时候会把gradle文件传上去，
+// 所以不要把帐号密码的信息直接写在这里，写在local.properties中，这里动态读取。
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    //读取 local.properties 文件里面的 bintray.user
+    user = properties.getProperty("bintray.user")
+    //读取 local.properties 文件里面的 bintray.apikey
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = "Utils"          //发布到JCenter上的仓库名称，注意新版本的bintray是需要手动创建的
+        // 发布到Bintray上的项目名字，这里的名字不是compile 'com.arshowbaby:mylibrary:1.0.0'中的mylibrary
+        name = "library"
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true  // 是否是公开项目
+    }
+}*/
