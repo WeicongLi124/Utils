@@ -3,7 +3,7 @@ package com.demo.weicongli.library.base;
 import android.os.Handler;
 import android.os.Message;
 
-import com.weicong.frankutils124.Interface.HandleMessage;
+import com.demo.weicongli.library.Interface.HandleMessage;
 
 import java.lang.ref.WeakReference;
 

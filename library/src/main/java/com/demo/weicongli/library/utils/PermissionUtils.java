@@ -7,7 +7,7 @@ import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
-import com.weicong.frankutils124.Interface.PermitToDo;
+import com.demo.weicongli.library.Interface.PermitToDo;
 
 /**
  * @author: Frank
