@@ -1,5 +1,6 @@
 package com.demo.weicongli.library.okhttp;
 
+import com.demo.weicongli.library.utils.EncryptionUtils;
 import com.google.gson.Gson;
 
 import okhttp3.Request;
@@ -17,28 +18,14 @@ public class PostRequestBuilder extends HttpRequestBuilder<PostRequestBuilder> {
         requestBuilder = new Request.Builder();
     }
 
-    public PostRequestBuilder removeHeader(String name){
-        requestBuilder.removeHeader(name);
-        return this;
-    }
-
-    public PostRequestBuilder head(){
-        requestBuilder.head();
-        return this;
-    }
-
-    public PostRequestBuilder patch(RequestBody requestBody){
-        requestBuilder.patch(requestBody);
-        return this;
-    }
-
-    public PostRequestBuilder tag(Object tag){
-        requestBuilder.tag(tag);
-        return this;
-    }
-
-    public PostRequestBuilder delete(RequestBody requestBody){
-        requestBuilder.delete(requestBody);
+    /**
+     * 添加加密参数
+     * @param key
+     * @param value
+     * @return
+     */
+    public PostRequestBuilder addEncryptedParam(String key, String value){
+        parameters.put(key,EncryptionUtils.getSHA1(EncryptionUtils.getMD5(value)));
         return this;
     }
 

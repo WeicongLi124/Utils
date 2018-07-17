@@ -22,8 +22,6 @@ import okhttp3.RequestBody;
 public class OkHttpUtils {
     private final OkHttpClient client = new OkHttpClient();
     private final Request.Builder requestBuilder;
-    public static final MediaType JSON_TYPE = MediaType.parse("application/json; charset=utf-8");
-
 
     public OkHttpUtils(Request.Builder requestBuilder) {
         this.requestBuilder = requestBuilder;
@@ -38,19 +36,19 @@ public class OkHttpUtils {
         return client.newCall(requestBuilder.build());
     }
 
+    public Request.Builder getRequestBuilder(){
+        return requestBuilder;
+    }
 
 
-    public static class OkBuilder{
-        private Map<Object,Object> parameters = new HashMap<>();
-        private RequestBody body;
-        private final Gson gson = new Gson();
+
+    public static class Builder {
 
         /**
          * 设置为post解析
          * @return
          */
         public PostRequestBuilder postRequest(){
-            this.body = RequestBody.create(JSON_TYPE,this.gson.toJson(parameters));
             return new PostRequestBuilder();
         }
 
@@ -59,7 +57,6 @@ public class OkHttpUtils {
          * @return
          */
         public GetRequestBuilder getRequest(){
-            this.body = RequestBody.create(JSON_TYPE,this.gson.toJson(parameters));
             return new GetRequestBuilder();
         }
     }

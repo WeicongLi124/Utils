@@ -9,6 +9,7 @@ import java.util.Map;
 import okhttp3.HttpUrl;
 import okhttp3.MediaType;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 
 /**
  * @author: WeicongLi
@@ -17,22 +18,14 @@ import okhttp3.Request;
  * @Function:
  */
 abstract class HttpRequestBuilder<T extends HttpRequestBuilder> {
+    String url;
     Gson gson;
     Map<Object,Object> parameters;
     Request.Builder requestBuilder;
     static final MediaType JSON_TYPE = MediaType.parse("application/json; charset=utf-8");
 
-    public T url(URL url){
-        requestBuilder.url(url);
-        return (T) this;
-    }
-
-    public T url(HttpUrl url){
-        requestBuilder.url(url);
-        return (T) this;
-    }
-
     public T url(String url){
+        this.url = url;
         requestBuilder.url(url);
         return (T) this;
     }
@@ -47,11 +40,31 @@ abstract class HttpRequestBuilder<T extends HttpRequestBuilder> {
         return (T) this;
     }
 
-    public T addParameters(Object key, Object value){
+    public T addParam(Object key, Object value){
         if (parameters == null){
             parameters = new HashMap<>();
         }
         this.parameters.put(key,value);
+        return (T) this;
+    }
+
+    public T removeHeader(String name){
+        requestBuilder.removeHeader(name);
+        return (T) this;
+    }
+
+    public T patch(RequestBody requestBody){
+        requestBuilder.patch(requestBody);
+        return (T) this;
+    }
+
+    public T tag(Object tag){
+        requestBuilder.tag(tag);
+        return (T) this;
+    }
+
+    public T delete(RequestBody requestBody){
+        requestBuilder.delete(requestBody);
         return (T) this;
     }
 
