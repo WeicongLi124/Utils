@@ -1,14 +1,6 @@
 package com.demo.weicongli.library.okhttp;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -32,6 +24,6 @@ public abstract class OkCallback implements Callback {
         onResponse(call,response.body().string());
     }
 
-    abstract void onFailure(Call call, String errorMsg);
-    abstract void onResponse(Call call, String response);
+    public abstract void onFailure(Call call, String errorMsg);
+    public abstract void onResponse(Call call, String response);
 }

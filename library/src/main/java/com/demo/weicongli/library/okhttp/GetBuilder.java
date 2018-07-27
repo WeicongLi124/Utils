@@ -11,9 +11,9 @@ import okhttp3.RequestBody;
  * @email: 912220261@qq.com
  * @Function:
  */
-public class GetRequestBuilder extends HttpRequestBuilder<GetRequestBuilder> {
+public class GetBuilder extends HttpRequestBuilder<GetBuilder> {
 
-    GetRequestBuilder() {
+    GetBuilder() {
         requestBuilder = new Request.Builder();
     }
 
@@ -22,7 +22,7 @@ public class GetRequestBuilder extends HttpRequestBuilder<GetRequestBuilder> {
      * @param str
      * @return
      */
-    public GetRequestBuilder appendUrl(String str){
+    public GetBuilder appendUrl(String str){
         url += str;
         return this;
     }
@@ -32,6 +32,6 @@ public class GetRequestBuilder extends HttpRequestBuilder<GetRequestBuilder> {
         if (gson == null){
             gson = new Gson();
         }else requestBuilder.put(RequestBody.create(JSON_TYPE,gson.toJson(parameters)));
-        return new OkHttpUtils(requestBuilder);
+        return OkHttpUtils.getInstance().setRequest(requestBuilder.build());
     }
 }

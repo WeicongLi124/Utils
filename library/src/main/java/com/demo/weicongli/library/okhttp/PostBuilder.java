@@ -12,9 +12,9 @@ import okhttp3.RequestBody;
  * @email: 912220261@qq.com
  * @Function:
  */
-public class PostRequestBuilder extends HttpRequestBuilder<PostRequestBuilder> {
+public class PostBuilder extends HttpRequestBuilder<PostBuilder> {
 
-    PostRequestBuilder(){
+    PostBuilder(){
         requestBuilder = new Request.Builder();
     }
 
@@ -24,7 +24,7 @@ public class PostRequestBuilder extends HttpRequestBuilder<PostRequestBuilder> {
      * @param value
      * @return
      */
-    public PostRequestBuilder addEncryptedParam(String key, String value){
+    public PostBuilder addEncryptedParam(String key, String value){
         parameters.put(key,EncryptionUtils.getSHA1(EncryptionUtils.getMD5(value)));
         return this;
     }
@@ -35,7 +35,7 @@ public class PostRequestBuilder extends HttpRequestBuilder<PostRequestBuilder> {
             gson = new Gson();
         }
         requestBuilder.post(RequestBody.create(JSON_TYPE,gson.toJson(parameters)));
-        return new OkHttpUtils(requestBuilder);
+        return OkHttpUtils.getInstance().setRequest(requestBuilder.build());
     }
 
 }
