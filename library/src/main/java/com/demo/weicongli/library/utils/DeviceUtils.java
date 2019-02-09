@@ -11,10 +11,11 @@ import android.provider.Settings;
  * Function: 用于获取设备信息的工具类
  */
 
-public class AndroidUtilCode {
+public class DeviceUtils {
 
     /**
      * 获取设备厂商
+     *
      * @return
      */
     public static String getManufacturer() {
@@ -23,21 +24,23 @@ public class AndroidUtilCode {
 
     /**
      * 获取设备型号
+     *
      * @return
      */
-    public static String getModel(){
+    public static String getModel() {
         String model = Build.MODEL;
-        if (model != null) model = model.trim().replace("\\*","");
+        if (model != null) model = model.trim().replace("\\*", "");
         else model = "";
         return model;
     }
 
     /**
      * 获取设备的安卓ID
+     *
      * @param context
      * @return
      */
-    public static String getAndroidID(Context context){
+    public static String getAndroidID(Context context) {
         return Settings.Secure.getString(
                 context.getContentResolver(),
                 Settings.Secure.ANDROID_ID
@@ -46,17 +49,19 @@ public class AndroidUtilCode {
 
     /**
      * 获取安卓系统版本号
+     *
      * @return
      */
-    public static String getSDKVersionName(){
+    public static String getSDKVersionName() {
         return Build.VERSION.RELEASE;
     }
 
     /**
      * 获取安卓系统版本码
+     *
      * @return
      */
-    public static int getSDKVersionCode(){
+    public static int getSDKVersionCode() {
         return Build.VERSION.SDK_INT;
     }
 }

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/top_selector"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:padding="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:text="@string/weekly_extent"
+        android:textSize="16sp"
+        android:textColor="#333333"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <RadioGroup
+        android:id="@+id/weekly_extent_rg"
+        android:weightSum="4"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/weekly_extent_me_rbtn"
+            android:text="@string/weekly_extent_me"
+            android:gravity="center"
+            style="@style/WeeklyRadioButtonStyle"/>
+        <RadioButton
+            android:id="@+id/weekly_extent_group_rbtn"
+            android:text="@string/weekly_extent_group"
+            android:layout_weight="2"
+            android:gravity="end|center"
+            style="@style/WeeklyRadioButtonStyle" />
+        <RadioButton
+            android:id="@+id/weekly_extent_all_rbtn"
+            android:checked="true"
+            android:text="@string/weekly_extent_all"
+            android:gravity="end|center"
+            android:layout_weight="2"
+            style="@style/WeeklyRadioButtonStyle" />
+    </RadioGroup>
+
+    <TextView
+        android:text="@string/weekly_type"
+        android:textSize="16sp"
+        android:textColor="#333333"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RadioGroup
+        android:id="@+id/weekly_type_rg"
+        android:weightSum="4"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/weekly_type_all_rbtn"
+            android:checked="true"
+            android:text="@string/weekly_type_all"
+            android:gravity="center"
+            style="@style/WeeklyRadioButtonStyle"/>
+        <RadioButton
+            android:id="@+id/weekly_type_part_rbtn"
+            android:text="@string/weekly_type_part"
+            android:layout_weight="1"
+            android:gravity="end|center"
+            style="@style/WeeklyRadioButtonStyle" />
+    </RadioGroup>
+
+</LinearLayout>

@@ -11,9 +11,10 @@ import java.security.NoSuchAlgorithmException;
  * Function: 加密：MD5、SHA1
  */
 
-public class EncryptionUtils {
+public class EncryptUtils {
     /**
      * MD5加密
+     *
      * @param str
      * @return
      */
@@ -30,6 +31,7 @@ public class EncryptionUtils {
 
     /**
      * SHA1加密
+     *
      * @param str
      * @return
      */

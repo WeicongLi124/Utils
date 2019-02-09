@@ -12,9 +12,10 @@ import java.io.IOException;
 public class CloseUtils {
     /**
      * close掉继承该接口的类
+     *
      * @param closeable
      */
-    public static void closeQuietly(Closeable closeable){
+    public static void closeQuietly(Closeable closeable) {
         if (closeable != null) {
             try {
                 closeable.close();

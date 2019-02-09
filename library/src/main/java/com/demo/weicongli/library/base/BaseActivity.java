@@ -2,6 +2,7 @@ package com.demo.weicongli.library.base;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,20 +24,26 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 沉浸式开关
      */
     protected boolean openSteep = false;
+    /**
+     * 设置固定页面方向
+     */
+    protected int requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(setLayout());
-        initView();
+        initParams();
         initListener();
-        if (openSteep){
-            steepStatusBar();
+        setRequestedOrientation(requestedOrientation);
+        if (openSteep) {
+            unlockSteep();
         }
     }
 
     /**
      * 设置布局，返回布局ID
+     *
      * @return
      */
     protected abstract int setLayout();
@@ -44,7 +51,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 初始化view
      */
-    protected abstract void initView();
+    protected abstract void initParams();
 
     /**
      * 初始化监听事件
@@ -54,9 +61,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 收起软键盘
      * parentView需要先设置focusableInTouchMode为true
-     * @param parentView    外围被点击的View
+     *
+     * @param parentView 外围被点击的View
      */
-    public void hideSoftInput(View parentView){
+    public void hideKeyBoard(View parentView) {
         //parentView获取焦点
         parentView.requestFocus();
         //收起键盘
@@ -69,27 +77,29 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 不携带消息直接跳转
-     * @param activity  当前活动
-     * @param nextActivity  跳转到的活动
+     *
+     * @param activity     当前活动
+     * @param nextActivity 跳转到的活动
      */
-    public void startActivity(Activity activity, Class<? extends Activity> nextActivity){
-        activity.startActivity(new Intent(activity,nextActivity));
+    public void start(Activity activity, Class<? extends Activity> nextActivity) {
+        activity.startActivity(new Intent(activity, nextActivity));
     }
 
     /**
      * 携带消息进行跳转
-     * @param activity  当前活动
-     * @param nextActivity  跳转到的活动
-     * @param requestCode   标识的消息
+     *
+     * @param activity     当前活动
+     * @param nextActivity 跳转到的活动
+     * @param requestCode  标识的消息
      */
-    public void startActivity(Activity activity,Class<? extends Activity> nextActivity,int requestCode){
-        activity.startActivityForResult(new Intent(activity,nextActivity),requestCode);
+    public void start(Activity activity, Class<? extends Activity> nextActivity, int requestCode) {
+        activity.startActivityForResult(new Intent(activity, nextActivity), requestCode);
     }
 
     /**
      * 开启沉浸式
      */
-    private void steepStatusBar() {
+    private void unlockSteep() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0及以上
             View decorView = getWindow().getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN

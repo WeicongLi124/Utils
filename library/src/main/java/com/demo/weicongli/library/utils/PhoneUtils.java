@@ -16,6 +16,7 @@ public class PhoneUtils {
 
     /**
      * 获取设备ID
+     *
      * @param context
      * @return
      */
@@ -27,6 +28,7 @@ public class PhoneUtils {
 
     /**
      * 获取设备的IMEI码
+     *
      * @param context
      * @return
      */
@@ -41,6 +43,7 @@ public class PhoneUtils {
 
     /**
      * 获取设备的MEID码
+     *
      * @param context
      * @return
      */
@@ -56,6 +59,7 @@ public class PhoneUtils {
 
     /**
      * 获取设备的IMSI码
+     *
      * @param context
      * @return
      */

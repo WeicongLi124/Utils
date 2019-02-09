@@ -25,29 +25,31 @@ public class PermissionUtils {
 
     /**
      * 获取权限方法
-     * @param context           上下文资源
-     * @param permissionType    权限的类型
+     *
+     * @param context        上下文资源
+     * @param permissionType 权限的类型
      */
     public void getPermission(Context context, String permissionType, int requestCode) {
         //Android 6.0 以上，动态获取权限
         if (Build.VERSION.SDK_INT >= 23) {
             if (!checkPermission(context, permissionType)) {
-                ActivityCompat.requestPermissions((Activity)context, new String[]{permissionType}, requestCode);
-            }else {
+                ActivityCompat.requestPermissions((Activity) context, new String[]{permissionType}, requestCode);
+            } else {
                 permitToDo.permitToDo(permissionType);
             }
-        }else {
+        } else {
             permitToDo.permitToDo(permissionType);
         }
     }
 
     /**
      * 检测权限是否已获得
-     * @param context           上下文资源
-     * @param permissionType    权限的类型
+     *
+     * @param context        上下文资源
+     * @param permissionType 权限的类型
      * @return
      */
-    public boolean checkPermission(Context context, String permissionType) {
+    private boolean checkPermission(Context context, String permissionType) {
         boolean flag = false;
         int checkReadStoragePermission = ContextCompat.checkSelfPermission(context, permissionType);
         if (checkReadStoragePermission == PackageManager.PERMISSION_GRANTED) {

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Utils</string>
+    
+    <!--周报-->
+    <string name="weekly_extent">查看的周报范围</string>
+    <string name="weekly_type">周报内容的显示方式</string>
+    <string name="weekly_extent_me">本人的</string>
+    <string name="weekly_extent_group">本组的</string>
+    <string name="weekly_extent_all">所有人的</string>
+    <string name="weekly_type_all">全部显示</string>
+    <string name="weekly_type_part">部分显示</string>
 </resources>

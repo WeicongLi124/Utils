@@ -17,6 +17,7 @@ import java.io.IOException;
 public class EncodeUtils {
     /**
      * bitmap转base64
+     *
      * @param bitmap
      * @return
      */

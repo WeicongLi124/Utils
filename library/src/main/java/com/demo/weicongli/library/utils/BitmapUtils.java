@@ -36,7 +36,7 @@ import java.io.InputStream;
  */
 
 public class BitmapUtils {
-    // 图片缩放比例(即模糊度)
+    //图片缩放比例(即模糊度)
     private static final float BITMAP_SCALE = 0.4f;
     public static final String ANDROID_RESOURCE = "android.resource://";
     public static final String FOREWARD_SLASH = "/";
@@ -82,7 +82,7 @@ public class BitmapUtils {
         input = ac.getContentResolver().openInputStream(uri);
         Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
         CloseUtils.closeQuietly(input);
-        return compressImage(bitmap,options);//再进行质量压缩
+        return compressImage(bitmap, options);//再进行质量压缩
     }
 
     /**
@@ -91,12 +91,12 @@ public class BitmapUtils {
      * @param image
      * @return
      */
-    public static Bitmap compressImage(Bitmap image,int options) {
+    public static Bitmap compressImage(Bitmap image, int options) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
         if (options > 100) {
             options = 100;
-        }else if (options < 0){
+        } else if (options < 0) {
             options = 0;
         }
         while (baos.toByteArray().length / 1024 > 100) {  //循环判断如果压缩后图片是否大于100kb,大于继续压缩
@@ -123,6 +123,7 @@ public class BitmapUtils {
 
     /**
      * drawable转bitmap
+     *
      * @param drawable
      * @return
      */
@@ -154,15 +155,17 @@ public class BitmapUtils {
 
     /**
      * bitmap转drawable
+     *
      * @param bitmap
      * @return
      */
-    public static Drawable bitmap2Drawable(final Bitmap bitmap,Context context) {
+    public static Drawable bitmap2Drawable(final Bitmap bitmap, Context context) {
         return bitmap == null ? null : new BitmapDrawable(context.getResources(), bitmap);
     }
 
     /**
      * 处理bitmap添加高斯模糊效果
+     *
      * @param context
      * @param image
      * @param blurRadius
@@ -203,14 +206,15 @@ public class BitmapUtils {
 
     /**
      * 设置drawable资源图片高斯模糊化
+     *
      * @param context
      * @param drawable
      * @param blurRadius
      * @return
      */
-    public static Drawable blurDrawable(Context context, Drawable drawable, float blurRadius){
+    public static Drawable blurDrawable(Context context, Drawable drawable, float blurRadius) {
         return BitmapUtils.bitmap2Drawable(BitmapUtils.blurBitmap(context,
-                BitmapUtils.drawable2Bitmap(drawable),blurRadius),context);
+                BitmapUtils.drawable2Bitmap(drawable), blurRadius), context);
     }
 
     /**

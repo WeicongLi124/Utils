@@ -1,6 +1,6 @@
 package com.demo.weicongli.library.okhttp;
 
-import com.demo.weicongli.library.utils.EncryptionUtils;
+import com.demo.weicongli.library.utils.EncryptUtils;
 import com.google.gson.Gson;
 
 import okhttp3.Request;
@@ -25,7 +25,7 @@ public class PostBuilder extends HttpRequestBuilder<PostBuilder> {
      * @return
      */
     public PostBuilder addEncryptedParam(String key, String value){
-        parameters.put(key,EncryptionUtils.getSHA1(EncryptionUtils.getMD5(value)));
+        parameters.put(key,EncryptUtils.getSHA1(EncryptUtils.getMD5(value)));
         return this;
     }
 

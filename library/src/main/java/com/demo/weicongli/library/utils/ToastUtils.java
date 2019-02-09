@@ -18,53 +18,56 @@ public class ToastUtils {
 
     /**
      * 传入文字
-     * */
-    public static void show( Context context , String text, int code){
+     */
+    public static void show(Context context, String text, int code) {
 
-        if (toast == null){
-            toast = Toast.makeText( context, text , code);
-        }else {
+        if (toast == null) {
+            toast = Toast.makeText(context, text, code);
+        } else {
             //如果当前Toast没有消失， 直接显示内容，不需要重新设置
             toast.setText(text);
         }
         toast.show();
     }
+
     /**
      * 传入资源文件
-     * */
-    public static void show(Context context, int resId, int code){
-        if (toast == null){
-            toast = Toast.makeText( context, resId , code);
-        }else {
+     */
+    public static void show(Context context, int resId, int code) {
+        if (toast == null) {
+            toast = Toast.makeText(context, resId, code);
+        } else {
             //如果当前Toast没有消失， 直接显示内容，不需要重新设置
             toast.setText(resId);
         }
         toast.show();
     }
+
     /**
      * 传入文字,在中间显示
-     * */
-    public static void showCenter( Context context , String text, int code){
+     */
+    public static void showCenter(Context context, String text, int code) {
 
-        if (toast == null){
-            toast = Toast.makeText( context, text , code);
-        }else {
+        if (toast == null) {
+            toast = Toast.makeText(context, text, code);
+        } else {
             //如果当前Toast没有消失， 直接显示内容，不需要重新设置
             toast.setText(text);
         }
-        toast.setGravity(Gravity.CENTER,0,0);
+        toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
     }
+
     /**
      * 传入图片
-     * */
-    public static void showImg( Context context ,  int resImg, int code){
+     */
+    public static void showImg(Context context, int resImg, int code) {
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(resImg);
-        if (toast == null){
+        if (toast == null) {
             toast = new Toast(context);
             toast.setView(imageView);
-        }else {
+        } else {
             //如果当前Toast没有消失， 直接显示内容，不需要重新设置
             toast.setView(imageView);
         }

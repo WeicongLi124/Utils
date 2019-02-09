@@ -37,10 +37,11 @@ public class ConnectUtils {
 
     /**
      * 检测是否连接WIFI
+     *
      * @param context
      * @return
      */
-    public static boolean isWifi(Context context){
+    public static boolean isWifi(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         if (cm == null)
@@ -50,14 +51,15 @@ public class ConnectUtils {
 
     /**
      * 判断蓝牙是否打开
+     *
      * @return
      */
-    public static boolean isBluetoothOpen(){
+    public static boolean isBluetoothOpen() {
         BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
-        if (adapter == null){
+        if (adapter == null) {
             return false;
-        }else if (adapter.isEnabled()){
+        } else if (adapter.isEnabled()) {
             return true;
-        }else return false;
+        } else return false;
     }
 }
