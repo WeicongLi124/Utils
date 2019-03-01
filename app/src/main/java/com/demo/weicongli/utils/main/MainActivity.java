@@ -1,16 +1,16 @@
 package com.demo.weicongli.utils.main;
 
-import android.graphics.Color;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.widget.Button;
 
 import com.demo.weicongli.library.base.BaseActivity;
 import com.demo.weicongli.utils.R;
-import com.demo.weicongli.utils.view.HuaWeiView;
 
 public class MainActivity extends BaseActivity {
-    private RelativeLayout relativeLayout;
-    private HuaWeiView huaWeiView;
+    private Button button;
 
     @Override
     protected int setLayout() {
@@ -19,20 +19,12 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initParams() {
-        relativeLayout = findViewById(R.id.main_layout);
-        huaWeiView = findViewById(R.id.huawei);
-        huaWeiView.setOnClickListener(new View.OnClickListener() {
+        button = findViewById(R.id.click);
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                huaWeiView.changeAngle(200);
-            }
-        });
-        huaWeiView.setOnAngleColorListener(new HuaWeiView.OnAngleColorListener() {
-            @Override
-            public void colorListener(int red, int green) {
-                Color color = new Color();
-                int backColor = color.argb(100, red, green, 0);
-                relativeLayout.setBackgroundColor(backColor);
+                Intent intent = new Intent("com.weiconglee.faketieba.MYACTION", Uri.parse("info"));
+                startActivity(intent);
             }
         });
     }
