@@ -1,1 +1,1 @@
-include ':app', ':weicongliutils', ':library'
+include ':app', ':library'
