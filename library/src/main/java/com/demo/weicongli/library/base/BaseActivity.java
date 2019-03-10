@@ -23,7 +23,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 沉浸式开关
      */
-    protected boolean openSteep = false;
+    private boolean steep = false;
+
+    public void setSteep(boolean steep) {
+        this.steep = steep;
+    }
+
     /**
      * 设置固定页面方向
      */
@@ -36,8 +41,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         initParams();
         initListener();
         setRequestedOrientation(requestedOrientation);
-        if (openSteep) {
-            unlockSteep();
+        if (steep) {
+            steep();
         }
     }
 
@@ -99,7 +104,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 开启沉浸式
      */
-    private void unlockSteep() {
+    private void steep() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0及以上
             View decorView = getWindow().getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN

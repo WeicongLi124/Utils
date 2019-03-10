@@ -11,7 +11,7 @@ import java.io.IOException;
  */
 public class CloseUtils {
     /**
-     * close掉继承该接口的类
+     * close掉继承该接口的实例
      *
      * @param closeable
      */

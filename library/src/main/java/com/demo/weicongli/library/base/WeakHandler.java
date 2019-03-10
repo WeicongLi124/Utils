@@ -3,7 +3,7 @@ package com.demo.weicongli.library.base;
 import android.os.Handler;
 import android.os.Message;
 
-import com.demo.weicongli.library.Interface.HandleMessage;
+import com.demo.weicongli.library.Interface.IHandleMessage;
 
 import java.lang.ref.WeakReference;
 
@@ -13,7 +13,7 @@ import java.lang.ref.WeakReference;
  * @e-mail: 912220261@qq.com
  * Function: 使用handler时，设置activity或fragment的弱引用
  */
-public class BaseHandler extends Handler {
+public class WeakHandler extends Handler {
     /**
      * 弱引用
      */
@@ -22,21 +22,24 @@ public class BaseHandler extends Handler {
     /**
      * 消息处理接口
      */
-    private HandleMessage handlerInterface;
+    private IHandleMessage iHandleMessage;
 
     /**
      * 设置弱引用
+     *
      * @param weakReference
-     * @param handleMessage
+     * @param iHandleMessage
      */
-    public BaseHandler(WeakReference<Object> weakReference,HandleMessage handleMessage){
+    public WeakHandler(WeakReference<Object> weakReference, IHandleMessage iHandleMessage) {
         this.weakReference = weakReference;
-        this.handlerInterface = handleMessage;
+        this.iHandleMessage = iHandleMessage;
     }
 
 
     @Override
     public void handleMessage(Message msg) {
-       handlerInterface.onMessage(msg);
+        if (weakReference.get() != null) {
+            iHandleMessage.onMessage(msg);
+        }
     }
 }

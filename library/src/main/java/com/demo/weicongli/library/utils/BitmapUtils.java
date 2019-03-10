@@ -50,7 +50,7 @@ public class BitmapUtils {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public static Bitmap getBitmapFormUri(Activity ac, Uri uri, int options) throws FileNotFoundException, IOException {
+    public static Bitmap getBitmapFormUri(Activity ac, Uri uri) throws FileNotFoundException, IOException {
         InputStream input = ac.getContentResolver().openInputStream(uri);
         BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
         onlyBoundsOptions.inJustDecodeBounds = true;
@@ -82,7 +82,7 @@ public class BitmapUtils {
         input = ac.getContentResolver().openInputStream(uri);
         Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
         CloseUtils.closeQuietly(input);
-        return compressImage(bitmap, options);//再进行质量压缩
+        return bitmap;
     }
 
     /**
@@ -91,9 +91,9 @@ public class BitmapUtils {
      * @param image
      * @return
      */
-    public static Bitmap compressImage(Bitmap image, int options) {
+    public static Bitmap compressImage(Bitmap image, Bitmap.CompressFormat format, int options) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        image.compress(format, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
         if (options > 100) {
             options = 100;
         } else if (options < 0) {
@@ -102,12 +102,11 @@ public class BitmapUtils {
         while (baos.toByteArray().length / 1024 > 100) {  //循环判断如果压缩后图片是否大于100kb,大于继续压缩
             baos.reset();//重置baos即清空baos
             //第一个参数 ：图片格式 ，第二个参数： 图片质量，100为最高，0为最差  ，第三个参数：保存压缩后的数据的流
-            image.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
+            image.compress(format, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
             options -= 10;//每次都减少10
         }
         ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
-        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
-        return bitmap;
+        return BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片并返回
     }
 
     /**
@@ -117,7 +116,7 @@ public class BitmapUtils {
      * @param resourceId
      * @return
      */
-    public static Uri resourceIdToUri(Context context, int resourceId) {
+    public static Uri resourceId2Uri(Context context, int resourceId) {
         return Uri.parse(ANDROID_RESOURCE + context.getPackageName() + FOREWARD_SLASH + resourceId);
     }
 

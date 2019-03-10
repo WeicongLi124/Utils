@@ -14,7 +14,7 @@ import android.net.NetworkInfo;
 public class ConnectUtils {
 
     /***
-     * 检测app是否联网
+     * 检测app联网是否可用
      * @param context
      * @return
      */
@@ -36,12 +36,12 @@ public class ConnectUtils {
     }
 
     /**
-     * 检测是否连接WIFI
+     * 检测WIFI是否可用
      *
      * @param context
      * @return
      */
-    public static boolean isWifi(Context context) {
+    public static boolean isWifiAvailable(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         if (cm == null)
@@ -50,11 +50,11 @@ public class ConnectUtils {
     }
 
     /**
-     * 判断蓝牙是否打开
+     * 判断蓝牙是否可用
      *
      * @return
      */
-    public static boolean isBluetoothOpen() {
+    public static boolean isBluetoothAvailable() {
         BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
         if (adapter == null) {
             return false;

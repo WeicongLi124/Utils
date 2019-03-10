@@ -22,19 +22,24 @@ import android.view.inputmethod.InputMethodManager;
 
 public abstract class BaseFragment extends Fragment {
     private View view;
+
     /**
      * 沉浸式开关
      */
-    protected boolean openSteep = false;
+    private boolean steep = false;
+
+    public void setSteep(boolean steep) {
+        this.steep = steep;
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(setLayout(),container,false);
-        initView(view);
+        initParams(view);
         initListener();
-        if (openSteep){
-            steepStatusBar();
+        if (steep){
+            steep();
         }
         return view;
     }
@@ -48,7 +53,7 @@ public abstract class BaseFragment extends Fragment {
     /**
      * 初始化view
      */
-    protected abstract void initView(View view);
+    protected abstract void initParams(View view);
 
     /**
      * 初始化监听事件
@@ -99,7 +104,7 @@ public abstract class BaseFragment extends Fragment {
     /**
      * 开启沉浸式
      */
-    private void steepStatusBar() {
+    private void steep() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0及以上
             View decorView = getActivity().getWindow().getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN

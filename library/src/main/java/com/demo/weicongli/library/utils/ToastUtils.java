@@ -19,12 +19,12 @@ public class ToastUtils {
     /**
      * 传入文字
      */
-    public static void show(Context context, String text, int code) {
-
+    public static void showText(Context context, String text, int gravity, int code) {
         if (toast == null) {
             toast = Toast.makeText(context, text, code);
+            toast.setGravity(gravity, 0, 0);
         } else {
-            //如果当前Toast没有消失， 直接显示内容，不需要重新设置
+            //如果当前Toast没有消失， 直接显示内容，不需要重新创建
             toast.setText(text);
         }
         toast.show();
@@ -33,45 +33,34 @@ public class ToastUtils {
     /**
      * 传入资源文件
      */
-    public static void show(Context context, int resId, int code) {
+    public static void showText(Context context, int resId, int gravity, int code) {
         if (toast == null) {
-            toast = Toast.makeText(context, resId, code);
+            toast = new Toast(context);
+            toast.setText(resId);
+            toast.setDuration(code);
+            toast.setGravity(gravity, 0, 0);
         } else {
-            //如果当前Toast没有消失， 直接显示内容，不需要重新设置
+            //如果当前Toast没有消失， 直接显示内容，不需要重新创建
             toast.setText(resId);
         }
         toast.show();
     }
 
     /**
-     * 传入文字,在中间显示
-     */
-    public static void showCenter(Context context, String text, int code) {
-
-        if (toast == null) {
-            toast = Toast.makeText(context, text, code);
-        } else {
-            //如果当前Toast没有消失， 直接显示内容，不需要重新设置
-            toast.setText(text);
-        }
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
-    }
-
-    /**
      * 传入图片
      */
-    public static void showImg(Context context, int resImg, int code) {
+    public static void showImg(Context context, int resImg, int gravity, int code) {
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(resImg);
         if (toast == null) {
             toast = new Toast(context);
             toast.setView(imageView);
+            toast.setDuration(code);
+            toast.setGravity(gravity, 0, 0);
         } else {
-            //如果当前Toast没有消失， 直接显示内容，不需要重新设置
+            //如果当前Toast没有消失， 直接显示内容，不需要重新创建
             toast.setView(imageView);
         }
-        //添加图片的操作,这里没有设置图片和文字显示在一行的操作呢...
         toast.show();
     }
 }
