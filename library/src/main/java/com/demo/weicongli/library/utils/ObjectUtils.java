@@ -25,7 +25,7 @@ public class ObjectUtils {
         }
     }
 
-    public void handGC(Object... objects) {
+    public static void handGC(Object... objects) {
         for (Object o : objects) {
             if (o != null)
                 o = null;
