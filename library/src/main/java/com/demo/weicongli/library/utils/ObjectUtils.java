@@ -9,7 +9,7 @@ import java.io.IOException;
  * time: 15:12
  * email: 912220261@qq.com
  */
-public class CloseUtils {
+public class ObjectUtils {
     /**
      * close掉继承该接口的实例
      *
@@ -22,6 +22,13 @@ public class CloseUtils {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void handGC(Object... objects) {
+        for (Object o : objects) {
+            if (o != null)
+                o = null;
         }
     }
 }

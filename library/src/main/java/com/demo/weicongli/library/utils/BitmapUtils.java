@@ -23,7 +23,6 @@ import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.Console;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -57,7 +56,7 @@ public class BitmapUtils {
         onlyBoundsOptions.inDither = true;//optional
         onlyBoundsOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;//optional
         BitmapFactory.decodeStream(input, null, onlyBoundsOptions);
-        CloseUtils.closeQuietly(input);
+        ObjectUtils.closeQuietly(input);
         int originalWidth = onlyBoundsOptions.outWidth;
         int originalHeight = onlyBoundsOptions.outHeight;
         if ((originalWidth == -1) || (originalHeight == -1))
@@ -81,7 +80,7 @@ public class BitmapUtils {
         bitmapOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;//optional
         input = ac.getContentResolver().openInputStream(uri);
         Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
-        CloseUtils.closeQuietly(input);
+        ObjectUtils.closeQuietly(input);
         return bitmap;
     }
 
