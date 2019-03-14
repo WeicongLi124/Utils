@@ -25,10 +25,10 @@ public class ObjectUtils {
         }
     }
 
-    public static void handGC(Object... objects) {
-        for (Object o : objects) {
-            if (o != null)
-                o = null;
+    public static void setNull(Object... objects) {
+        for (int i = 0; i < objects.length; i++) {
+            if (objects[i] != null)
+                objects[i] = null;
         }
     }
 }

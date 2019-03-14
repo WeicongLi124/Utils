@@ -49,16 +49,16 @@ public class BitmapUtils {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public static Bitmap getBitmapFormUri(Activity ac, Uri uri) throws FileNotFoundException, IOException {
+    public static Bitmap getBitmapFromUri(Activity ac, Uri uri) throws FileNotFoundException, IOException {
         InputStream input = ac.getContentResolver().openInputStream(uri);
-        BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
-        onlyBoundsOptions.inJustDecodeBounds = true;
-        onlyBoundsOptions.inDither = true;//optional
-        onlyBoundsOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;//optional
-        BitmapFactory.decodeStream(input, null, onlyBoundsOptions);
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        options.inDither = true;
+        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+        BitmapFactory.decodeStream(input, null, options);
         ObjectUtils.closeQuietly(input);
-        int originalWidth = onlyBoundsOptions.outWidth;
-        int originalHeight = onlyBoundsOptions.outHeight;
+        int originalWidth = options.outWidth;
+        int originalHeight = options.outHeight;
         if ((originalWidth == -1) || (originalHeight == -1))
             return null;
         //图片分辨率以480x800为标准
